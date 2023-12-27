@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NLog" Version="5.2.7" />
+      <PackageReference Include="NLog.Config" Version="4.7.15" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Settings\appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="..\..\..\..\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config">
+        <Link>Log\NLog.config</Link>
+      </None>
+    </ItemGroup>
+
+</Project>
