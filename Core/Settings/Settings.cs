@@ -15,11 +15,15 @@ public class Settings
     public static Settings Instance => SettingsInstance.Value;
     #endregion
 
-    private const string Path = "./Settings/appsettings.json";
     public AppSettings Config { get; private set; }
     private void Load()
     {
-        var readAllText = File.ReadAllText(Path);
+        string strAppConfigFilename = "appsettings.json";
+        string strAppConfigFilePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        FileInfo settingsFile = new(Path.Combine(strAppConfigFilePath, "Settings", strAppConfigFilename));
+        Console.WriteLine(settingsFile);
+
+        var readAllText = File.ReadAllText(settingsFile.FullName);
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         Config = JsonSerializer.Deserialize<AppSettings>(readAllText, options) ?? throw new InvalidOperationException();
     }
